@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Twitter - Home</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f8fa;
+    color: #14171a;
+}
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    padding: 25px;
+    border-right: 1px solid #ddd;
+    background: white;
+}
+
+.logo {
+    color: #1d9bf0;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.menu a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: #14171a;
+    font-size: 18px;
+    border-radius: 25px;
+}
+
+.menu a:hover {
+    background: #e8f5fd;
+    color: #1d9bf0;
+}
+
+.post-btn {
+    background: #1d9bf0;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 30px;
+    width: 100%;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.main {
+    flex: 1;
+    max-width: 650px;
+    background: white;
+    border-right: 1px solid #ddd;
+}
+
+.header {
+    padding: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+}
+
+.tweet-box {
+    padding: 20px;
+    border-bottom: 10px solid #f5f8fa;
+}
+
+.tweet-box textarea {
+    width: 100%;
+    height: 80px;
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 18px;
+}
+
+.tweet-box button {
+    background: #1d9bf0;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 25px;
+    cursor: pointer;
+    float: right;
+}
+
+.tweet {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.user {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.username {
+    color: gray;
+    font-weight: normal;
+}
+
+.tweet p {
+    margin: 12px 0;
+    line-height: 1.5;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    max-width: 450px;
+    color: #657786;
+}
+
+.actions span {
+    cursor: pointer;
+}
+
+.actions span:hover {
+    color: #1d9bf0;
+}
+
+.rightbar {
+    flex: 1;
+    padding: 20px;
+}
+
+.search {
+    width: 100%;
+    padding: 14px;
+    border-radius: 25px;
+    border: none;
+    background: #eff3f4;
+    margin-bottom: 20px;
+}
+
+.trending {
+    background: #f5f8fa;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.trending h3 {
+    margin-bottom: 15px;
+}
+
+.trending p {
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+@media(max-width: 850px) {
+    .rightbar {
+        display: none;
+    }
+}
+
+@media(max-width: 550px) {
+    .sidebar {
+        width: 75px;
+        padding: 10px;
+    }
+    .logo {
+        font-size: 20px;
+    }
+    .menu a {
+        font-size: 13px;
+        padding: 12px 5px;
+    }
+    .post-btn {
+        font-size: 12px;
+        padding: 10px 3px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">𝕏</div>
+
+        <div class="menu">
+            <a href="#">🏠 Home</a>
+            <a href="#">🔍 Explore</a>
+            <a href="#">🔔 Notifications</a>
+            <a href="#">✉️ Messages</a>
+            <a href="#">👤 Profile</a>
+            <a href="#">⚙️ Settings</a>
+        </div>
+
+        <button class="post-btn"
+        onclick="document.getElementById('postText').focus()">
+        Post
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+
+        <div class="header">Home</div>
+
+        <!-- Create Post -->
+        <div class="tweet-box">
+            <textarea id="postText"
+            placeholder="What's happening?!"></textarea>
+            <button onclick="addPost()">Post</button>
+            <div style="clear:both"></div>
+        </div>
+
+        <!-- Posts -->
+        <div id="posts">
+
+            <div class="tweet">
+                <div class="user">
+                    Rahul Sharma
+                    <span class="username">@rahul123 · 2h</span>
+                </div>
+                <p>
+                    Welcome to Twitter! 🚀
+                    Connect with people and share your thoughts.
+                </p>
+                <div class="actions">
+                    <span onclick="commentPost()">💬 <b>12</b></span>
+                    <span onclick="repost(this)">🔁 <b>5</b></span>
+                    <span onclick="likePost(this)">❤️ <b>24</b></span>
+                    <span>📤</span>
+                </div>
+            </div>
+
+            <div class="tweet">
+                <div class="user">
+                    Priya Singh
+                    <span class="username">@priya · 4h</span>
+                </div>
+                <p>
+                    Learning HTML, CSS and JavaScript.
+                    Web development is amazing! 💻
+                </p>
+                <div class="actions">
+                    <span onclick="commentPost()">💬 <b>8</b></span>
+                    <span onclick="repost(this)">🔁 <b>3</b></span>
+                    <span onclick="likePost(this)">❤️ <b>45</b></span>
+                    <span>📤</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="rightbar">
+        <input class="search" placeholder="Search Twitter">
+
+        <div class="trending">
+            <h3>What's happening?</h3>
+            <p>#Technology 🚀</p>
+            <p>#India</p>
+            <p>#Cricket</p>
+            <p>#WebDevelopment</p>
+            <p>#Trending</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+function addPost() {
+    let text = document.getElementById("postText").value;
+
+    if (text.trim() === "") {
+        alert("Please write something!");
+        return;
+    }
+
+    let post = document.createElement("div");
+    post.className = "tweet";
+
+    let user = document.createElement("div");
+    user.className = "user";
+    user.textContent = "You @youraccount · Just now";
+
+    let message = document.createElement("p");
+    message.textContent = text;
+
+    let actions = document.createElement("div");
+    actions.className = "actions";
+
+    actions.innerHTML = `
+        <span onclick="commentPost()">💬 <b>0</b></span>
+        <span onclick="repost(this)">🔁 <b>0</b></span>
+        <span onclick="likePost(this)">❤️ <b>0</b></span>
+        <span>📤</span>
+    `;
+
+    post.appendChild(user);
+    post.appendChild(message);
+    post.appendChild(actions);
+
+    document.getElementById("posts").prepend(post);
+    document.getElementById("postText").value = "";
+}
+
+function likePost(element) {
+    let count = element.querySelector("b");
+    let liked = element.dataset.liked === "true";
+
+    count.textContent = Number(count.textContent) + (liked ? -1 : 1);
+    element.dataset.liked = liked ? "false" : "true";
+    element.style.color = liked ? "#657786" : "#e0245e";
+}
+
+function repost(element) {
+    let count = element.querySelector("b");
+    count.textContent = Number(count.textContent) + 1;
+    element.style.color = "#17bf63";
+}
+
+function commentPost() {
+    let comment = prompt("Write your comment:");
+    if (comment && comment.trim()) {
+        alert("Comment added: " + comment);
+    }
+}
+
+</script>
+
+</body>
+</html>
